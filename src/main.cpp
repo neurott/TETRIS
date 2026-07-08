@@ -13,6 +13,7 @@ int main()
     while (WindowShouldClose() == false)
     {
         BeginDrawing(); // begin de canvas drawiing
+        ClearBackground(darkBlue);
         EndDrawing();
     
     }
