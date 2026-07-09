@@ -2,7 +2,6 @@
 #include <vector>
 #include <raylib.h>
 
-
 class Grid{
     public:
     //how many ROWS and columns its contains
