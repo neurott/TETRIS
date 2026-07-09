@@ -10,12 +10,6 @@ int main()
 
     Grid grid = Grid();
     //grid.Print();
-    grid.grid[0][0] = 1;
-    grid.grid[3][4] = 4;
-    grid.grid[0][0] = 1;
-    grid.grid[0][0] = 1;
-    grid.grid[0][0] = 1;
-   
 
     Color darkBlue = {44,44,127,255};
     

@@ -15,7 +15,6 @@ void Grid::Initialize(){
             grid[row][column] = 0;
         }
 
-
     }
 }
 
