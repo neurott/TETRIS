@@ -12,7 +12,6 @@ class Grid{
     int grid[20][10]; // un array simple con 20 filas y 10 columnas
 
     private:
-    std::vector<Color> GetCellColors();
     int numRows;
     int numColumns;
     int cellSize;
