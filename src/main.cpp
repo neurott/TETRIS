@@ -11,6 +11,7 @@ int main()
     Grid grid = Grid();
     //grid.Print();
     LBlock block = LBlock();
+    TBlock block2 = TBlock();
 
     Color darkBlue = {44,44,127,255};
     
@@ -19,7 +20,8 @@ int main()
         BeginDrawing(); // begin de canvas drawiing
         ClearBackground(darkBlue);
         grid.Draw();
-        block.Draw();
+  
+        block2.Draw();
         EndDrawing();
     
     }
