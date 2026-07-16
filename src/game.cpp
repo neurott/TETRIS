@@ -13,7 +13,6 @@ Block Game::GetRandomBlock(){
 
     if(blocks.empty()){
         
-
         blocks = GetAllBlocks();
 
     }
@@ -53,7 +52,9 @@ void Game::HandleInput(){
         case KEY_DOWN:
             MoveBlockDown();
             break;
-        
+        case KEY_UP:
+            RotateBlock();
+            break;
         }
 
 }
@@ -80,7 +81,10 @@ void Game::MoveBlockDown(){
     
     if(isBlockOutside()){
         currentBlock.Move(-1,0);
+        LockBlock();
     }
+
+    
 
 }
 
@@ -94,4 +98,15 @@ bool Game::isBlockOutside(){
 
     }
     return false;
+}
+
+void Game::RotateBlock(){ 
+    currentBlock.Rotate();
+    if(isBlockOutside()){
+        currentBlock.UndoRotation();
+    }
+}
+
+void Game::LockBLock(){
+    
 }
