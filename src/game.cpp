@@ -107,6 +107,6 @@ void Game::RotateBlock(){
     }
 }
 
-void Game::LockBLock(){
-    
+void Game::LockBlock(){
+
 }
