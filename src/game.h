@@ -13,10 +13,13 @@ class Game{
         void MoveBlockLeft();
         void MoveBlockRight();
         void MoveBlockDown();
+        void MoveBlockUp();
         std::vector<Block> GetAllBlocks();
 
     private:
         bool isBlockOutside();
+        void RotateBlock();
+        void LockBlock();
         std::vector<Block> blocks;
         Block currentBlock;
         Block nextBlock;
