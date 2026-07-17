@@ -29,7 +29,6 @@ int main() {
             game.MoveBlockDown();
         }
         BeginDrawing(); // begin de canvas drawiing
-
         ClearBackground(darkBlue);
         game.Draw();
         EndDrawing();
