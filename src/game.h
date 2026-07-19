@@ -14,6 +14,7 @@ class Game{
         void MoveBlockRight();
         void MoveBlockDown();
         void MoveBlockUp();
+        bool isGameOver;
         std::vector<Block> GetAllBlocks();
         
         private:
