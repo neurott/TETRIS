@@ -16,6 +16,7 @@ class Game{
         void MoveBlockUp();
         bool isGameOver;
         std::vector<Block> GetAllBlocks();
+        int score;
         
         private:
         bool isBlockOutside();
@@ -23,6 +24,7 @@ class Game{
         void RotateBlock();
         void LockBlock();
         void Reset();
+        void UpdateScore(int linesCleared, int movedDownPoints);
         std::vector<Block> blocks;
         Block currentBlock;
         Block nextBlock;

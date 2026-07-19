@@ -7,6 +7,7 @@ Game::Game(){
     currentBlock = GetRandomBlock();
     nextBlock = GetRandomBlock();
     isGameOver = false;
+    score = 0;
 
 }
 
@@ -90,7 +91,6 @@ void Game::MoveBlockRight(){
 void Game::MoveBlockDown(){
 
     if(!isGameOver){
-
         currentBlock.Move(1, 0);
         
         if(isBlockOutside() || !BlockFits()){
@@ -163,4 +163,24 @@ void Game::Reset(){
     blocks = GetAllBlocks();
     currentBlock = GetRandomBlock();
     nextBlock = GetRandomBlock();
+}
+
+void Game::UpdateScore(int linesCleared, int movedDownPoints){
+
+
+    switch(linesCleared){
+        case 1:
+
+            score += 100;
+            break;
+        case 2:
+            score += 200;
+            break;
+
+        case 3:
+            score += 500;
+            break;
+        default:
+            break;
+    }
 }
