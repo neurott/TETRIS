@@ -22,6 +22,7 @@ class Game{
         bool BlockFits();
         void RotateBlock();
         void LockBlock();
+        void Reset();
         std::vector<Block> blocks;
         Block currentBlock;
         Block nextBlock;

@@ -22,7 +22,7 @@ int main() {
 
     Game game = Game();
     
-    while (WindowShouldClose() == false) {
+    while (!WindowShouldClose()) {
         
         game.HandleInput();
         if(EventTriggered(0.2)){
