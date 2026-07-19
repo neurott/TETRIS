@@ -107,7 +107,7 @@ void Game::RotateBlock(){
     if(!isGameOver){
         currentBlock.Rotate();
 
-        if(isBlockOutside() || !BlockFits()){
+        if((isBlockOutside() || !BlockFits()) && isGameOver){
             currentBlock.UndoRotation();
         }
     }
@@ -141,7 +141,8 @@ void Game::LockBlock(){
     
     nextBlock = GetRandomBlock();
     
-    grid.ClearFullRows();
+    int rowCleared = grid.ClearFullRows();
+    UpdateScore(rowCleared, 0);
     
 }
 
@@ -167,20 +168,27 @@ void Game::Reset(){
 
 void Game::UpdateScore(int linesCleared, int movedDownPoints){
 
+    if(linesCleared > 0){
+        score += 100 + (linesCleared - 1) * 200; 
+    }
 
-    switch(linesCleared){
+    score += movedDownPoints;    
+
+    //este swtich lo vi poco escalable, imagina elimino 4 líneas, tendría que crear otro case
+    // ni q fuera undertalelw
+    /*switch(linesCleared){
         case 1:
-
             score += 100;
             break;
         case 2:
             score += 200;
             break;
-
         case 3:
             score += 500;
             break;
         default:
             break;
-    }
+    }*/
+
+
 }
