@@ -45,7 +45,6 @@ int main() {
             
             Vector2 textSize = MeasureTextEx(font,scoreText,38,2);
             //hay q agarrar el width y se agarra con la x
-
             DrawTextEx(font,scoreText, {320 + (170 - textSize.x) / 2,65},38,2, WHITE);
 
             DrawRectangleRounded({320,215,170,180}, 0.3, 6, lightBlue);

@@ -76,17 +76,25 @@ void Game::HandleInput(){
     
     switch(keyPressed){
         case KEY_LEFT:
+        case KEY_A:
             MoveBlockLeft();
             break;
         case KEY_RIGHT:
+        case KEY_D:
             MoveBlockRight();
             break;
         case KEY_DOWN:
+        case KEY_S:
             UpdateScore(0,1);
             MoveBlockDown();
             break;
         case KEY_UP:
+        case KEY_W:
             RotateBlock();
+            break;
+        case KEY_SPACE:
+        case KEY_F:
+            HardDrop();
             break;
 
     }
@@ -131,6 +139,19 @@ void Game::MoveBlockDown(){
     
 }
 
+void Game::HardDrop(){
+    int distanceRecorrida = 0;
+    currentBlock.Move(1,0);
+    while(!isBlockOutside() && BlockFits()){
+        currentBlock.Move(1,0);
+        distanceRecorrida++;
+    }
+    
+    currentBlock.Move(-1,0);
+    LockBlock();
+    UpdateScore(0, distanceRecorrida * 2);
+
+}
 //revisa esto, pq hay un bug.
 void Game::RotateBlock(){ 
     if(!isGameOver){
