@@ -8,6 +8,22 @@ Game::Game(){
     nextBlock = GetRandomBlock();
     isGameOver = false;
     score = 0;
+    InitAudioDevice();
+    music = LoadMusicStream("Sounds/soundtrack.mp3");
+    SetMusicVolume(music,0.02f);
+    PlayMusicStream(music);
+    rotateSound = LoadSound("Sounds/rotate.mp3");
+    clearSound = LoadSound("Sounds/clear.mp3");
+
+}
+
+Game::~Game(){
+
+    UnloadSound(rotateSound);
+    UnloadSound(clearSound);
+    //acá cierro el audio device
+    UnloadMusicStream(music);
+    CloseAudioDevice();
 
 }
 
@@ -34,7 +50,19 @@ std::vector<Block> Game::GetAllBlocks()
 
 void Game::Draw(){
     grid.Draw();
-    currentBlock.Draw();
+    currentBlock.Draw(11,11);
+
+    switch(nextBlock.id){
+        case 3: //iblock
+            nextBlock.Draw(255,290);
+            break;
+        case 4://oblock
+            nextBlock.Draw(255,280);
+            break;
+        default:
+            nextBlock.Draw(270,270);
+            break;
+    }
     
 }
 
@@ -42,25 +70,24 @@ void Game::HandleInput(){
     
     int keyPressed = GetKeyPressed();
     if(isGameOver && keyPressed != 0){
-        
         isGameOver = false;
         Reset();
     }
     
     switch(keyPressed){
         case KEY_LEFT:
-        MoveBlockLeft();
-        break;
+            MoveBlockLeft();
+            break;
         case KEY_RIGHT:
-        MoveBlockRight();
-        break;
+            MoveBlockRight();
+            break;
         case KEY_DOWN:
-        UpdateScore(0,1);
-        MoveBlockDown();
-        break;
+            UpdateScore(0,1);
+            MoveBlockDown();
+            break;
         case KEY_UP:
-        RotateBlock();
-        break;
+            RotateBlock();
+            break;
 
     }
     
@@ -104,12 +131,16 @@ void Game::MoveBlockDown(){
     
 }
 
+//revisa esto, pq hay un bug.
 void Game::RotateBlock(){ 
     if(!isGameOver){
         currentBlock.Rotate();
 
-        if((isBlockOutside() || !BlockFits()) && isGameOver){
+        if(isBlockOutside() || !BlockFits()){
             currentBlock.UndoRotation();
+        }
+        else{
+            PlaySound(rotateSound);
         }
     }
 }
@@ -141,9 +172,12 @@ void Game::LockBlock(){
     }
     
     nextBlock = GetRandomBlock();
-    
-    int rowCleared = grid.ClearFullRows();
-    UpdateScore(rowCleared, 0);
+    int rowsCleared = grid.ClearFullRows();
+    if(rowsCleared > 0){
+        PlaySound(clearSound);
+        UpdateScore(rowsCleared, 0);
+
+    }
     
 }
 
