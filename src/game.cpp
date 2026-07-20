@@ -55,6 +55,7 @@ void Game::HandleInput(){
         MoveBlockRight();
         break;
         case KEY_DOWN:
+        UpdateScore(0,1);
         MoveBlockDown();
         break;
         case KEY_UP:
@@ -164,6 +165,7 @@ void Game::Reset(){
     blocks = GetAllBlocks();
     currentBlock = GetRandomBlock();
     nextBlock = GetRandomBlock();
+    score = 0;
 }
 
 void Game::UpdateScore(int linesCleared, int movedDownPoints){
