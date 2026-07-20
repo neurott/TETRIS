@@ -10,16 +10,16 @@ Game::Game(){
     score = 0;
     InitAudioDevice();
     music = LoadMusicStream("Sounds/soundtrack.mp3");
-    SetMusicVolume(music,0.02f);
+    SetMusicVolume(music,0.2f);
     PlayMusicStream(music);
-    rotateSound = LoadSound("Sounds/rotate.mp3");
+    
     clearSound = LoadSound("Sounds/clear.mp3");
 
 }
 
 Game::~Game(){
 
-    UnloadSound(rotateSound);
+
     UnloadSound(clearSound);
     //acá cierro el audio device
     UnloadMusicStream(music);
@@ -138,9 +138,6 @@ void Game::RotateBlock(){
 
         if(isBlockOutside() || !BlockFits()){
             currentBlock.UndoRotation();
-        }
-        else{
-            PlaySound(rotateSound);
         }
     }
 }
