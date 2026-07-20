@@ -22,9 +22,11 @@ int main() {
 
     Game game = Game();
     Font font = LoadFontEx("Font/monogram.ttf", 64, 0, 0);
+
     while (!WindowShouldClose()) {
         
         game.HandleInput();
+        UpdateMusicStream(game.music);
         
         if(EventTriggered(0.2)){
             game.MoveBlockDown();
