@@ -25,6 +25,7 @@ class Game{
         bool isBlockOutside();
         bool BlockFits();
         void RotateBlock();
+        void HardDrop();
         void LockBlock();
         void Reset();
         void UpdateScore(int linesCleared, int movedDownPoints);
