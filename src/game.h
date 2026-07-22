@@ -13,6 +13,7 @@ class Game{
         //void MoveBlockUp();
         bool isGameOver;
         Music music;    
+        //Music soundtrack;
         int score;
         
 
