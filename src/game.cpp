@@ -9,7 +9,7 @@ Game::Game(){
     isGameOver = false;
     score = 0;
     InitAudioDevice();
-    music = LoadMusicStream("Sounds/tetrisrap.mp3");
+    music = LoadMusicStream("Sounds/soundtrack.mp3");
     //soundtrack = LoadMusicStream("Sounds/soundtrack.mp3");
     //SetMusicVolume(soundtrack,0.2f);
     SetMusicVolume(music,0.2f);
