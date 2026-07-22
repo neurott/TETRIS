@@ -26,29 +26,50 @@ int main() {
     while (!WindowShouldClose()) {
         
         game.HandleInput();
-        UpdateMusicStream(game.music);
+        
+        if(!game.isGameOver){
+            UpdateMusicStream(game.music);
+
+        }else{
+            StopMusicStream(game.music);
+        }
         
         if(EventTriggered(0.2)){
             game.MoveBlockDown();
         }
         BeginDrawing(); // begin de canvas drawing
+            game.Draw();
+            
             ClearBackground(darkBlue);
-            DrawTextEx(font,"Score", {365,15},38,2, WHITE);
-            DrawTextEx(font,"Next", {370,175},38,2, WHITE);
-            if(game.isGameOver){
-                DrawTextEx(font,"GAME OVER", {320,450},38,2, WHITE);
-            }
+            //Score
             DrawRectangleRounded({320,55,170,60}, 0.3, 6, lightBlue);
 
-            char scoreText[10];
-            sprintf(scoreText, "%d", game.score);
-            
-            Vector2 textSize = MeasureTextEx(font,scoreText,38,2);
-            //hay q agarrar el width y se agarra con la x
-            DrawTextEx(font,scoreText, {320 + (170 - textSize.x) / 2,65},38,2, WHITE);
+            DrawTextEx(font,"Score", {365,15},38,2, WHITE);
 
+            char scoreText[10];
+
+            sprintf(scoreText, "%d", game.score);
+
+            Vector2 textSize = MeasureTextEx(font,scoreText,38,2);
+            
+            //hay q agarrar el width y se agarra con la x
+            DrawTextEx(font,scoreText, {320 + (170 - textSize.x) / 2,65},38,2, BLACK);
+
+            DrawTextEx(font,"Next", {370,175},38,2, WHITE);
+                        
             DrawRectangleRounded({320,215,170,180}, 0.3, 6, lightBlue);
-            game.Draw();
+            
+            
+           
+            
+            if(game.isGameOver){
+                DrawRectangle(0,0,500,620, Fade(BLACK, 0.75f));
+                Vector2 gameOverSize = MeasureTextEx(font, "GAME OVER", 38, 2);
+                DrawTextEx(font,"GAME OVER", {(500 -gameOverSize.x) / 2, (620 - gameOverSize.y) / 2},38,2, WHITE);
+                
+            }
+
+            
 
 
         EndDrawing();

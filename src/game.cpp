@@ -9,10 +9,11 @@ Game::Game(){
     isGameOver = false;
     score = 0;
     InitAudioDevice();
-    music = LoadMusicStream("Sounds/soundtrack.mp3");
+    music = LoadMusicStream("Sounds/tetrisrap.mp3");
+    //soundtrack = LoadMusicStream("Sounds/soundtrack.mp3");
+    //SetMusicVolume(soundtrack,0.2f);
     SetMusicVolume(music,0.2f);
     PlayMusicStream(music);
-    
     clearSound = LoadSound("Sounds/clear.mp3");
 
 }
@@ -23,6 +24,7 @@ Game::~Game(){
     UnloadSound(clearSound);
     //acá cierro el audio device
     UnloadMusicStream(music);
+    //UnloadMusicStream(soundtrack);
     CloseAudioDevice();
 
 }
@@ -69,9 +71,14 @@ void Game::Draw(){
 void Game::HandleInput(){
     
     int keyPressed = GetKeyPressed();
-    if(isGameOver && keyPressed != 0){
-        isGameOver = false;
+
+    if((isGameOver && keyPressed != 0) || keyPressed == KEY_R){
+        isGameOver = false;      
         Reset();
+        // despues del reset q reinicie la música
+        SeekMusicStream(music, 0.0f);     
+        PlayMusicStream(music);
+        return;
     }
     
     switch(keyPressed){
@@ -95,6 +102,8 @@ void Game::HandleInput(){
         case KEY_SPACE:
         case KEY_F:
             HardDrop();
+            break;
+        default:
             break;
 
     }
@@ -212,12 +221,14 @@ bool Game::BlockFits(){
 }
 
 void Game::Reset(){
+
     grid.Initialize();
 
     blocks = GetAllBlocks();
     currentBlock = GetRandomBlock();
     nextBlock = GetRandomBlock();
     score = 0;
+    //SeekMusicStream(music,0.0f);
 }
 
 void Game::UpdateScore(int linesCleared, int movedDownPoints){
