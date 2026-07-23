@@ -20,7 +20,6 @@ void Block::Draw(int offsetX, int offsetY){
 void Block::Move(int rows, int columns){
     
     rowOffset += rows;
-
     columnOffset += columns;
 
 }

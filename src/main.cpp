@@ -28,10 +28,10 @@ int main() {
         game.HandleInput();
         
         if(!game.isGameOver){
-            UpdateMusicStream(game.music);
+            //UpdateMusicStream(game.music);
 
         }else{
-            StopMusicStream(game.music);
+            //StopMusicStream(game.music);
         }
         
         if(EventTriggered(0.2)){
@@ -53,9 +53,9 @@ int main() {
             Vector2 textSize = MeasureTextEx(font,scoreText,38,2);
             
             //hay q agarrar el width y se agarra con la x
-            DrawTextEx(font,scoreText, {320 + (170 - textSize.x) / 2,65},38,2, BLACK);
+            DrawTextEx(font,scoreText, {320 + (170 - textSize.x) / 2,65},38,2, WHITE);
             
-            DrawTextEx(font,"Next", {370,175},38,2, BLACK);
+            DrawTextEx(font,"Next", {370,175},38,2, WHITE);
             
             DrawRectangleRounded({320,215,170,180}, 0.3, 6, lightBlue);
             
@@ -64,6 +64,7 @@ int main() {
             
             game.Draw();
             if(game.isGameOver){
+                
                 DrawRectangle(0,0,500,620, Fade(BLACK, 0.75f));
                 Vector2 gameOverSize = MeasureTextEx(font, "GAME OVER", 38, 2);
                 DrawTextEx(font,"GAME OVER", {(500 -gameOverSize.x) / 2, (620 - gameOverSize.y) / 2},38,2, WHITE);
