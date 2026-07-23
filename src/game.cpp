@@ -15,13 +15,20 @@ Game::Game(){
     SetMusicVolume(music,0.2f);
     PlayMusicStream(music);
     clearSound = LoadSound("Sounds/clear.mp3");
-
+    rotateSound = LoadSound("Sounds/rotate_sound.mp3");
+    hardDropSound = LoadSound("Sounds/hardDrop.mp3");
+    moveSound = LoadSound("Sounds/moveSound.mp3");
+    gameOverSound = LoadSound("Sounds/game_over.mp3");
 }
 
 Game::~Game(){
 
 
     UnloadSound(clearSound);
+    UnloadSound(rotateSound);
+    UnloadSound(hardDropSound);
+    UnloadSound(moveSound);
+    UnloadSound(gameOverSound);
     //acá cierro el audio device
     UnloadMusicStream(music);
     //UnloadMusicStream(soundtrack);
@@ -51,6 +58,7 @@ std::vector<Block> Game::GetAllBlocks()
 }
 
 void Game::Draw(){
+
     grid.Draw();
     currentBlock.Draw(11,11);
 
@@ -85,18 +93,22 @@ void Game::HandleInput(){
         case KEY_LEFT:
         case KEY_A:
             MoveBlockLeft();
+            PlaySound(moveSound);
             break;
         case KEY_RIGHT:
         case KEY_D:
+            PlaySound(moveSound);
             MoveBlockRight();
             break;
         case KEY_DOWN:
         case KEY_S:
+            PlaySound(moveSound);
             UpdateScore(0,1);
             MoveBlockDown();
             break;
         case KEY_UP:
         case KEY_W:
+            PlaySound(rotateSound);
             RotateBlock();
             break;
         case KEY_SPACE:
@@ -118,6 +130,7 @@ void Game::MoveBlockLeft(){
         if(isBlockOutside() || !BlockFits()){
             currentBlock.Move(0,1);
         }
+
     }
     
 }
@@ -130,6 +143,7 @@ void Game::MoveBlockRight(){
         if(isBlockOutside() || !BlockFits()){
             currentBlock.Move(0,-1);
         }
+
     }
     
 }
@@ -141,11 +155,12 @@ void Game::MoveBlockDown(){
         if(isBlockOutside() || !BlockFits()){
             currentBlock.Move(-1,0);
             LockBlock();
+            PlaySound(hardDropSound);
         }
+
+
     }
-    
-    
-    
+
 }
 
 void Game::HardDrop(){
@@ -157,6 +172,7 @@ void Game::HardDrop(){
     }
     
     currentBlock.Move(-1,0);
+    PlaySound(hardDropSound);
     LockBlock();
     UpdateScore(0, distanceRecorrida * 2);
 
@@ -169,6 +185,8 @@ void Game::RotateBlock(){
         if(isBlockOutside() || !BlockFits()){
             currentBlock.UndoRotation();
         }
+
+
     }
 }
 
@@ -196,6 +214,7 @@ void Game::LockBlock(){
     //despues el gameover va en todos los métodos q permiten q se mueva el bloque
     if(!BlockFits()){
         isGameOver = true;
+        PlaySound(gameOverSound);
     }
     
     nextBlock = GetRandomBlock();
