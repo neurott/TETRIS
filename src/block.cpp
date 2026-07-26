@@ -12,7 +12,7 @@ void Block::Draw(int offsetX, int offsetY){
     std::vector<Position> tiles = GetCellPositions();
 
     for(Position item: tiles){                  //11                            //11
-        DrawRectangle(item.column * cellSize + offsetX, item.row * cellSize + offsetX, cellSize - 1, cellSize - 1,colors[id]);
+        DrawRectangle(item.column * cellSize + offsetX, item.row * cellSize + offsetY, cellSize - 1, cellSize - 1,colors[id]);
     }
 }
 

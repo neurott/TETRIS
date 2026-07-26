@@ -5,6 +5,7 @@
 #include "position.h"
 #include "colors.h"
 
+//tetromino
 class Block{
     public:
         Block();
