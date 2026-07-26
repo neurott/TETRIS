@@ -177,9 +177,14 @@ void Game::HardDrop(){
     UpdateScore(0, distanceRecorrida * 2);
 
 }
-//revisa esto, pq hay un bug.
+
+
 void Game::RotateBlock(){ 
+//quiero q el bloque O.id = 4 no rote
     if(!isGameOver){
+        if(currentBlock.id == 4){
+            return;
+        }
         currentBlock.Rotate();
 
         if(isBlockOutside() || !BlockFits()){
