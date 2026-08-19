@@ -4,7 +4,7 @@ Block::Block(){
     cellSize = 30;
     rotationState = 0;
     colors = GetCellColors();
-    rowOffset = 0;
+    rowOffset = 0; /* no desplazamiento*/
     columnOffset = 0;
 }
 
@@ -17,6 +17,7 @@ void Block::Draw(int offsetX, int offsetY){
 }
 
 //necesitamos saber cuantas filas y cuantas columnas tenemos q mover
+//
 void Block::Move(int rows, int columns){
     
     rowOffset += rows;
