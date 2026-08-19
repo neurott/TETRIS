@@ -32,6 +32,7 @@ int main() {
 
         }else{
             //StopMusicStream(game.music);
+            
         }
         
         if(EventTriggered(0.2)){
