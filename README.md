@@ -1,6 +1,6 @@
 # Tetris
 
-Un clon de Tetris hecho en C++ usando [raylib](https://www.raylib.com/) como motor gráfico, creado simplemente para aprender C++ y algo de desarrollo de videojuegos, anteriormente probé con GODOT, pero de mañoso, preferí algo que non tuviera interfaz y tener el control completo de la aplicación. Este mini-proyecto lo armé aplicando programación orientada a objetos, buscando practicar el diseño de clases y la separación de responsabilidades más allá de simplemente hacer que el juego funcione.
+Un clon de Tetris hecho en C++ usando [raylib](https://www.raylib.com/) como motor gráfico, creado simplemente para aprender C++ y algo de desarrollo de videojuegos, anteriormente probé con GODOT, pero de mañoso, preferí algo que no tuviera interfaz y tener el control completo de la aplicación. Este mini-proyecto lo armé aplicando programación orientada a objetos, buscando practicar el diseño de clases y la separación de responsabilidades más allá de simplemente hacer que el juego funcione.
 
 ---
 
